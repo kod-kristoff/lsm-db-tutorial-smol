@@ -15,7 +15,7 @@ impl Db {
         if !db_dir.as_ref().exists() {
             smol::fs::create_dir_all(&db_dir).await?;
         }
-        let log = Log::open(db_dir.as_ref().join("log")).await?;
+        let log = Log::open(db_dir.as_ref().join("log.jsonl")).await?;
         Ok(Db { log })
     }
 

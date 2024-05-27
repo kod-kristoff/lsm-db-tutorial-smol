@@ -3,13 +3,13 @@ use lsm_db_tutorial_smol::Db;
 fn main() {
     smol::block_on(async {
         if let Err(err) = real_main().await {
-            eprintln!("{}", err);
+            eprintln!("{:?}", err);
             std::process::exit(1);
         }
     })
 }
 
-async fn real_main() -> eyre::Result<()> {
+async fn real_main() -> miette::Result<()> {
     let mut db = Db::new("db").await?;
 
     db.put("foo".as_bytes(), "bar".as_bytes()).await?;
