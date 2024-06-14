@@ -49,10 +49,12 @@ impl Log {
     }
 }
 
+#[async_trait::async_trait]
 pub trait Queryable {
     async fn get(&self, key: &[u8]) -> Result<Option<Vec<u8>>, Error>;
 }
 
+#[async_trait::async_trait]
 impl Queryable for Log {
     async fn get(&self, key: &[u8]) -> Result<Option<Vec<u8>>, Error> {
         let reader = File::open(&self.path).await?;
