@@ -1,0 +1,9 @@
+[package]
+name = "quick-dev"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+lsm-db-tutorial-smol = { version = "0.1.0", path = "../.." }
+miette = { version = "7.2.0", features = ["fancy"] }
+smol = "2.0.0"
