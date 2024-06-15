@@ -11,7 +11,7 @@ use crate::Error;
 use super::Queryable;
 
 pub struct Log {
-    path: PathBuf,
+    pub(crate) path: PathBuf,
     log: File,
 }
 
@@ -22,6 +22,7 @@ impl Log {
             .create(true)
             .open(&path)
             .await?;
+        log.sync_all().await?;
         Ok(Log {
             path: path.as_ref().to_path_buf(),
             log,
@@ -30,9 +31,9 @@ impl Log {
 }
 
 #[derive(nanoserde::DeJson, nanoserde::SerJson)]
-struct Put {
-    key: Vec<u8>,
-    value: Vec<u8>,
+pub struct Put {
+    pub key: Vec<u8>,
+    pub value: Vec<u8>,
 }
 
 impl Log {
