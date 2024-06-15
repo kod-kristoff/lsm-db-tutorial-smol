@@ -1,10 +1,12 @@
 use std::path::Path;
 
 mod log;
+mod queryable;
 
 use crate::Error;
+pub use queryable::Queryable;
 
-use self::log::{Log, Queryable};
+use self::log::Log;
 
 pub struct Db {
     log: Log,
